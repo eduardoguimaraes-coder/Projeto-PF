@@ -1,6 +1,6 @@
 
 const lista1 = ['up','down']
-const lista2 = ['up']
+const lista2 = ['up','left','down','lower']
 //COMPARANDO 2 LISTAS, E CRIANDO OUTRA COM ELEMENTOS IGUAIS
 const resultado = lista1.filter((item, indice) => {
     if (item === lista2[indice]) { 
