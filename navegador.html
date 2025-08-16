@@ -1,20 +1,20 @@
-<script src=".../howler.min.js"></script>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8">
   <title>Space Invaders</title>
-  <link rel="stylesheet" href="./design.css">
+  <link rel="stylesheet" href="design.css">
 </head>
 <body>
-  <canvas id="space-invaders" width="700" height="700"></canvas>
-  <div id="ui">
-    <div>Score: <span id="score">0</span></div>
-    <button id="start">Start</button>
-    <button id="pause">Pause/Resume</button>
-    <button id="mute">Mute/Unmute</button>
-    <button id="reload">Reload</button>
+  <div id="menu">
+    <h1>Space Invaders</h1>
+    <button id="play-btn">▶ Play</button>
   </div>
-  <script type="module" src="./Arquivo.js"></script>
+  
+  <canvas id="space-invaders" width="700" height="500" style="display:none"></canvas>
+  
+  <audio id="bg-music" src="music.mp3" loop></audio>
+  
+  <script src="Arquivojs.js"></script>
 </body>
 </html>
