@@ -32,3 +32,11 @@ const botões = () => {
  Space => dispatch({type:'SHOOT'})
 }
 
+function preload() {
+    naveimg = loadImage("documents/nave.pxo")
+    invader = loadImage("documents/invader")
+    invader = loadImage("documents/invader2")
+    invader = loadImage("documents/invader3")
+    invader = loadImage("documents/invader4")
+    lasernave = loadImage("documents/laserred")
+}
