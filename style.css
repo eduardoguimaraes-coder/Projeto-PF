@@ -23,7 +23,7 @@ body {
 }
 
 canvas {
-  background: rgb(0,0,0);
+  background: #111;
   display: block;
   margin: auto;
 }
