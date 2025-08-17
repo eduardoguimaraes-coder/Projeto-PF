@@ -6,16 +6,14 @@ const menu = document.querySelector("#menu");
 
 canvas.width = 800
 canvas.height = 600
-
 // images dos jogadores e dos inimigos
 const playerImg = new Image();
-playerImg.src = "nave.png";
+playerImg.src = "assets/nave.png";
 const enemyImg = new Image();
-enemyImg.src = "invader2.png";
+enemyImg.src = "assets/invader2.png";
 const engineImg = new Image()
-engineImg.src = "engine_sprites.png"
-const skyImg = new Image()
-skyImg.src = "sky.png"
+engineImg.src = "assets/engine_sprites.png"
+
 
 ctx.imageSmoothingEnabled = false
 
@@ -125,19 +123,19 @@ const update = (dt) => {
   if (alive.length === 0) {
     // respawn e aumenta velocidade
     state.enemies = (function spawn(){ const cols = 8, rows = 4; return Array.from({length: cols*rows}, (_, i) => ({ x: 40 + (i%cols) * ((canvas.width-80)/cols), y: 40 + Math.floor(i/cols)*40, w: 36, h: 18, alive: true })); })();
-    state.enemySpeed += 9;
-    state.enemies = (function spawn(){ const cols = 9, rows = 4; return Array.from({length: cols*rows}, (_, i) => ({ x: 40 + (i%cols) * ((canvas.width-80)/cols), y: 40 + Math.floor(i/cols)*40, w: 36, h: 18, alive: true })); })();
+    state.enemySpeed += 8;
+    state.enemies = (function spawn(){ const cols = 8, rows = 4; return Array.from({length: cols*rows}, (_, i) => ({ x: 40 + (i%cols) * ((canvas.width-80)/cols), y: 40 + Math.floor(i/cols)*40, w: 36, h: 18, alive: true })); })();
     state.enemySpeed += 9;
     state.enemies = (function spawn(){ const cols = 8, rows = 5; return Array.from({length: cols*rows}, (_, i) => ({ x: 40 + (i%cols) * ((canvas.width-80)/cols), y: 40 + Math.floor(i/cols)*40, w: 36, h: 18, alive: true })); })();
+    state.enemySpeed += 9.5;
+    state.enemies = (function spawn(){ const cols = 9, rows = 5; return Array.from({length: cols*rows}, (_, i) => ({ x: 40 + (i%cols) * ((canvas.width-80)/cols), y: 40 + Math.floor(i/cols)*40, w: 36, h: 18, alive: true })); })();
     state.enemySpeed += 10;
-    state.enemies = (function spawn(){ const cols = 9, rows = 6; return Array.from({length: cols*rows}, (_, i) => ({ x: 40 + (i%cols) * ((canvas.width-80)/cols), y: 40 + Math.floor(i/cols)*40, w: 36, h: 18, alive: true })); })();
-    state.enemySpeed += 10.5;
 
   } else {
     const minX = Math.min(...alive.map(e => e.x));
     const maxX = Math.max(...alive.map(e => e.x + e.w));
     const willHit = (state.enemyDir > 0 && maxX + state.enemyDir * state.enemySpeed * dt > canvas.width - 8) ||
-                    (state.enemyDir < 0 && minX + state.enemyDir * state.enemySpeed * dt < 11);
+                    (state.enemyDir < 0 && minX + state.enemyDir * state.enemySpeed * dt < 10);
     if (willHit) {
       state.enemyDir *= -1;
       state.enemies = state.enemies.map(e => ({ ...e, y: e.y + 12 }));
@@ -159,7 +157,7 @@ const update = (dt) => {
 const drawRect = (x, y, w, h, color) => { ctx.fillStyle = color; ctx.fillRect(x, y, w, h); };
 
 const render = () => {
-  ctx.drawImage(skyImg,0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // Player
   ctx.drawImage(playerImg, state.player.x, state.player.y, state.player.w, state.player.h);
@@ -185,7 +183,7 @@ const render = () => {
   }
 };
 
-// --- Loop principal ---
+//Loop principal
 const loop = (ts) => {
   const dt = Math.min(0.05, (ts - (state.lastTime || ts)) / 1000);
   state.lastTime = ts;
@@ -194,7 +192,7 @@ const loop = (ts) => {
   requestAnimationFrame(loop);
 }; 
 
-// --- Play button ---
+// Play button
 playBtn.addEventListener("click", () => {
   ensureAudio();
   if (state.audio.ctx && state.audio.ctx.state === "suspended") state.audio.ctx.resume();
