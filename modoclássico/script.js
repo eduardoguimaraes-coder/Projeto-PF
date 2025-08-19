@@ -9,12 +9,14 @@ const playerImg = new Image();
 playerImg.src = "assets/nave.png";
 const enemyImg = new Image();
 enemyImg.src = "assets/invader2.png";
+const baseImg = new Image();
+baseImg.src = "assets/base(escudo).png"
 
 
 const state = {
   running: false,
   lastTime: 0,
-  player: { x: (canvas.width / 2) - 25, y: canvas.height - 60, w: 70, h: 50, speed: 450, cooldown: 0, lives: 3 },
+  player: { x: (canvas.width / 2) - 25, y: canvas.height - 80, w: 90, h: 70, speed: 450, cooldown: 0, lives: 3 },
   enemyBullets: [],
   bullets: [],
   enemies: (function spawn() { const cols = 8, rows = 3; return Array.from({ length: cols * rows }, (_, i) => ({ x: 40 + (i % cols) * ((canvas.width - 80) / cols), y: 40 + Math.floor(i / cols) * 40, w: 36, h: 28, alive: true })); })(),
@@ -197,8 +199,8 @@ const update = (dt) => {
       state.enemies = state.enemies.map(e => ({ ...e, x: e.x + state.enemyDir * state.enemySpeed * dt }));
     }
   }
-  //Definir base (escudo de )
-
+  //Definir base (escudo)
+ 
 
 
 
