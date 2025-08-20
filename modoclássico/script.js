@@ -183,9 +183,9 @@ const update = (dt) => {
     state.enemies = (function spawn() { const cols = 9, rows = 4; return Array.from({ length: cols * rows }, (_, i) => ({ x: 40 + (i % cols) * ((canvas.width - 80) / cols), y: 40 + Math.floor(i / cols) * 40, w: 36, h: 18, alive: true })); })();
     state.enemySpeed += 9;
     state.enemies = (function spawn() { const cols = 8, rows = 5; return Array.from({ length: cols * rows }, (_, i) => ({ x: 40 + (i % cols) * ((canvas.width - 80) / cols), y: 40 + Math.floor(i / cols) * 40, w: 36, h: 18, alive: true })); })();
-    state.enemySpeed += 10;
+    state.enemySpeed += 9.5;
     state.enemies = (function spawn() { const cols = 9, rows = 6; return Array.from({ length: cols * rows }, (_, i) => ({ x: 40 + (i % cols) * ((canvas.width - 80) / cols), y: 40 + Math.floor(i / cols) * 40, w: 36, h: 18, alive: true })); })();
-    state.enemySpeed += 10.5;
+    state.enemySpeed += 9.5;
 
   } else {
     const minX = Math.min(...alive.map(e => e.x));
@@ -235,8 +235,9 @@ const render = () => {
   // Bullets
   state.bullets.forEach(b => drawRect(b.x, b.y, b.w, b.h, "#58a6ff"));
 
-  // Escudo(base)
-  state.base.forEach(b => drawRect(b.x, b.y, b.w, b.h, "#721e04ff"));
+  // Escudo(base) 
+
+  // state.base.forEach(b => drawRect(b.x, b.y, b.w, b.h, "#721e04ff"));
 
   // Enemy bullets
   state.enemyBullets.forEach(b => drawRect(b.x, b.y, b.w, b.h, "#ff5470"));
